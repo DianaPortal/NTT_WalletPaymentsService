@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  title: Wallet Payments Service API
+  version: 1.0.0
+  description: API para envío y consulta de pagos P2P por número de celular.
+servers:
+  - url: http://localhost:8082
+tags:
+  - name: Payments
+paths:
+  /payments:
+    post:
+      tags: [Payments]
+      summary: Crear solicitud de pago P2P
+      operationId: createPayment
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: false
+          description: Clave de idempotencia para evitar pagos duplicados.
+          schema: { type: string, maxLength: 128 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '202':
+          description: Solicitud recibida (estado inicial REQUESTED).
+          headers:
+            X-Trace-Id:
+              description: Correlation/Trace id de la operación.
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResource'
+        '400':
+          description: Petición inválida.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404':
+          description: Wallet no encontrado.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422':
+          description: Regla de negocio incumplida (fondos insuficientes, wallet bloqueado, etc.).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '500':
+          description: Error inesperado.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /payments/{paymentId}:
+    get:
+      tags: [Payments]
+      summary: Consultar un pago por id
+      operationId: getPaymentById
+      parameters:
+        - in: path
+          name: paymentId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Pago encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResource'
+        '404':
+          description: No existe el pago.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /_health:
+    get:
+      tags: [Payments]
+      summary: Health check
+      operationId: health
+      responses:
+        '200':
+          description: Estado del servicio.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: UP }
+
+components:
+  schemas:
+    PaymentRequest:
+      type: object
+      required: [fromPhone, toPhone, amount]
+      properties:
+        fromPhone:
+          type: string
+          description: Número del emisor (E.164)
+          example: "+51999111222"
+          minLength: 7
+          maxLength: 20
+        toPhone:
+          type: string
+          description: Número del receptor (E.164)
+          example: "+51999888777"
+          minLength: 7
+          maxLength: 20
+        amount:
+          type: number
+          format: double
+          minimum: 0.01
+          example: 15.75
+        message:
+          type: string
+          maxLength: 140
+          nullable: true
+
+    PaymentStatus:
+      type: string
+      enum: [REQUESTED, COMPLETED, FAILED]
+
+    PaymentResource:
+      type: object
+      required: [id, fromPhone, toPhone, amount, status, createdAt]
+      properties:
+        id:
+          type: string
+          example: "669d3d5c9b3f1c5a2f8a1a01"
+        fromPhone:
+          type: string
+        toPhone:
+          type: string
+        amount:
+          type: number
+          format: double
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+        failureReason:
+          type: string
+          nullable: true
+          example: "INSUFFICIENT_FUNDS"
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          example: "VALIDATION_ERROR"
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true
