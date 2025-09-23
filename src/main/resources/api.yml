@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API para envío y consulta de pagos P2P por número de celular.
 servers:
-  - url: http://localhost:8082
+  - url: http://localhost:8089
 tags:
   - name: Payments
 paths:
@@ -79,6 +79,36 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
+  /payments/sent/{phone}:
+    get:
+      tags: [Payments]
+      summary: Listar pagos enviados por un teléfono
+      operationId: listSentByPhone
+      parameters:
+        - name: phone
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Lista de pagos
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/PaymentResource' } } } }
+
+  /payments/received/{phone}:
+    get:
+      tags: [Payments]
+      summary: Listar pagos recibidos por un teléfono
+      operationId: listReceivedByPhone
+      parameters:
+        - name: phone
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Lista de pagos
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/PaymentResource' } } } }
+
 
   /_health:
     get:
@@ -94,6 +124,7 @@ paths:
                 type: object
                 properties:
                   status: { type: string, example: UP }
+
 
 components:
   schemas:
