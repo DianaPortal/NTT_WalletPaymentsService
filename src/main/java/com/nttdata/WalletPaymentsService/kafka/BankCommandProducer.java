@@ -1,7 +1,7 @@
-package com.nttdata.walletpaymentsservice.kafka;
+package com.nttdata.WalletPaymentsService.kafka;
 
-import com.nttdata.walletpaymentsservice.kafka.events.card.CardDebitRequestedEvent;
-import com.nttdata.walletpaymentsservice.kafka.events.card.CardDebitTransferInRequestedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.card.CardDebitRequestedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.card.CardDebitTransferInRequestedEvent;
 import io.reactivex.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.service;
+package com.nttdata.WalletPaymentsService.service;
 
 import io.reactivex.Completable;
 import io.reactivex.subjects.CompletableSubject;

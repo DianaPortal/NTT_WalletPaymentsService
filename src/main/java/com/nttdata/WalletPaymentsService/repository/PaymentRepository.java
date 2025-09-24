@@ -1,6 +1,6 @@
-package com.nttdata.walletpaymentsservice.repository;
+package com.nttdata.WalletPaymentsService.repository;
 
-import com.nttdata.walletpaymentsservice.domain.*;
+import com.nttdata.WalletPaymentsService.domain.Payment;
 import org.springframework.data.mongodb.repository.*;
 
 import java.util.*;

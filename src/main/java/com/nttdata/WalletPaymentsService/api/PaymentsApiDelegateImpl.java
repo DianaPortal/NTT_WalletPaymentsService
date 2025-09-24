@@ -1,8 +1,9 @@
-package com.nttdata.walletpaymentsservice.api;
+package com.nttdata.WalletPaymentsService.api;
 
+import com.nttdata.WalletPaymentsService.service.PaymentService;
+import com.nttdata.WalletPaymentsService.support.ApiMapper;
+import com.nttdata.walletpaymentsservice.api.PaymentsApiDelegate;
 import com.nttdata.walletpaymentsservice.model.*;
-import com.nttdata.walletpaymentsservice.service.*;
-import com.nttdata.walletpaymentsservice.support.*;
 import lombok.*;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;

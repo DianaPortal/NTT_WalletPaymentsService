@@ -1,7 +1,8 @@
-package com.nttdata.walletpaymentsservice.kafka;
+package com.nttdata.WalletPaymentsService.kafka;
 
-import com.nttdata.walletpaymentsservice.kafka.events.payment.PaymentFailedEvent;
-import com.nttdata.walletpaymentsservice.kafka.events.payment.PaymentSettledEvent;
+
+import com.nttdata.WalletPaymentsService.kafka.events.payment.PaymentFailedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.payment.PaymentSettledEvent;
 import io.reactivex.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

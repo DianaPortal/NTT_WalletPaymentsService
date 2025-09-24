@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.support;
+package com.nttdata.WalletPaymentsService.support;
 
 import lombok.*;
 

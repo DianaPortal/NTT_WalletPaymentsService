@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.config;
+package com.nttdata.WalletPaymentsService.config;
 
 import com.fasterxml.jackson.databind.*;
 import org.springframework.context.annotation.*;

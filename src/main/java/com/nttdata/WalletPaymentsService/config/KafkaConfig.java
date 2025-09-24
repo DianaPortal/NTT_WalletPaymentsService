@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.config;
+package com.nttdata.WalletPaymentsService.config;
 
 import org.apache.kafka.clients.admin.*;
 import org.springframework.beans.factory.annotation.*;

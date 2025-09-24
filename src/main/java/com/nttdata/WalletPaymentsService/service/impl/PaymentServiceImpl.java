@@ -1,20 +1,24 @@
-package com.nttdata.walletpaymentsservice.service.impl;
-import com.nttdata.walletpaymentsservice.cache.WalletDirectoryCache;
-import com.nttdata.walletpaymentsservice.cache.WalletInfo;
-import com.nttdata.walletpaymentsservice.domain.Payment;
-import com.nttdata.walletpaymentsservice.kafka.events.card.CardDebitRequestedEvent;
-import com.nttdata.walletpaymentsservice.kafka.events.card.CardDebitTransferInRequestedEvent;
-import com.nttdata.walletpaymentsservice.kafka.events.wallet.WalletAdjustRequestedEvent;
+package com.nttdata.WalletPaymentsService.service.impl;
+import com.nttdata.WalletPaymentsService.cache.WalletDirectoryCache;
+import com.nttdata.WalletPaymentsService.cache.WalletInfo;
+import com.nttdata.WalletPaymentsService.domain.Payment;
+import com.nttdata.WalletPaymentsService.kafka.BankCommandProducer;
+import com.nttdata.WalletPaymentsService.kafka.PaymentEventsProducer;
+import com.nttdata.WalletPaymentsService.kafka.WalletCommandProducer;
+import com.nttdata.WalletPaymentsService.kafka.events.card.CardDebitRequestedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.card.CardDebitTransferInRequestedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.payment.PaymentFailedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.payment.PaymentSettledEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.wallet.WalletAdjustRequestedEvent;
+import com.nttdata.WalletPaymentsService.repository.PaymentRepository;
+import com.nttdata.WalletPaymentsService.service.OperationAwaiter;
+import com.nttdata.WalletPaymentsService.service.PaymentService;
+
+import com.nttdata.WalletPaymentsService.support.BusinessException;
+import com.nttdata.WalletPaymentsService.support.ErrorCodes;
+import com.nttdata.WalletPaymentsService.util.PhoneUtils;
 import com.nttdata.walletpaymentsservice.model.PaymentStatus;
-import com.nttdata.walletpaymentsservice.kafka.PaymentEventsProducer;
-import com.nttdata.walletpaymentsservice.kafka.events.payment.PaymentFailedEvent;
-import com.nttdata.walletpaymentsservice.kafka.events.payment.PaymentSettledEvent;
 import com.nttdata.walletpaymentsservice.model.PaymentRequest;
-import com.nttdata.walletpaymentsservice.repository.PaymentRepository;
-import com.nttdata.walletpaymentsservice.service.OperationAwaiter;
-import com.nttdata.walletpaymentsservice.service.PaymentService;
-import com.nttdata.walletpaymentsservice.support.BusinessException;
-import com.nttdata.walletpaymentsservice.support.ErrorCodes;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
@@ -26,14 +30,11 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
-import com.nttdata.walletpaymentsservice.util.PhoneUtils;
-import com.nttdata.walletpaymentsservice.kafka.BankCommandProducer;
-import com.nttdata.walletpaymentsservice.kafka.WalletCommandProducer;
 
 import java.util.List;
 @Service
 @RequiredArgsConstructor
-public class PaymentServiceImpl implements PaymentService{
+public class PaymentServiceImpl implements PaymentService {
   private final PaymentRepository payments;
   private final WalletDirectoryCache cache;
   private final PaymentEventsProducer producer;

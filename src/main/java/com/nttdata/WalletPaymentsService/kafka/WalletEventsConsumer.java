@@ -1,9 +1,10 @@
-package com.nttdata.walletpaymentsservice.kafka;
+package com.nttdata.WalletPaymentsService.kafka;
 
-import com.nttdata.walletpaymentsservice.cache.*;
-import com.nttdata.walletpaymentsservice.kafka.events.wallet.WalletCreatedEvent;
-import com.nttdata.walletpaymentsservice.kafka.events.wallet.WalletUpdatedEvent;
-import com.nttdata.walletpaymentsservice.service.OperationAwaiter;
+import com.nttdata.WalletPaymentsService.cache.WalletDirectoryCache;
+import com.nttdata.WalletPaymentsService.cache.WalletInfo;
+import com.nttdata.WalletPaymentsService.kafka.events.wallet.WalletCreatedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.wallet.WalletUpdatedEvent;
+import com.nttdata.WalletPaymentsService.service.OperationAwaiter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.*;
 import org.springframework.kafka.annotation.*;

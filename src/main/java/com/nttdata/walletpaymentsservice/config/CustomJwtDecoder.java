@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.config;
+package com.nttdata.WalletPaymentsService.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jwt.Jwt;

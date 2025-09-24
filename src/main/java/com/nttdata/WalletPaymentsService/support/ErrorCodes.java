@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.support;
+package com.nttdata.WalletPaymentsService.support;
 
 public final class ErrorCodes {
   private ErrorCodes() {}

@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice;
+package com.nttdata.WalletPaymentsService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

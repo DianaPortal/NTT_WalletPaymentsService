@@ -1,6 +1,6 @@
-package com.nttdata.walletpaymentsservice.support;
+package com.nttdata.WalletPaymentsService.support;
 
-import com.nttdata.walletpaymentsservice.domain.*;
+import com.nttdata.WalletPaymentsService.domain.Payment;
 import com.nttdata.walletpaymentsservice.model.*;
 import org.springframework.stereotype.*;
 import org.openapitools.jackson.nullable.JsonNullable;

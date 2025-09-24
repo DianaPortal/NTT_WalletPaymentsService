@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.domain.dto;
+package com.nttdata.WalletPaymentsService.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

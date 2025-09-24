@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.cache;
+package com.nttdata.WalletPaymentsService.cache;
 
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.*;

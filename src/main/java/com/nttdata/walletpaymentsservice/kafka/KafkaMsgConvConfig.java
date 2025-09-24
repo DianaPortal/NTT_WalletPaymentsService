@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.kafka;
+package com.nttdata.WalletPaymentsService.kafka;
 
 import org.springframework.context.annotation.*;
 import org.springframework.kafka.annotation.EnableKafka;

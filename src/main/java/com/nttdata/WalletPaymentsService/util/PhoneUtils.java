@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.util;
+package com.nttdata.WalletPaymentsService.util;
 
 public class PhoneUtils {
   public static String normalizePhone(String phone) {

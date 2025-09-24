@@ -1,8 +1,8 @@
-package com.nttdata.walletpaymentsservice.kafka;
+package com.nttdata.WalletPaymentsService.kafka;
 
-import com.nttdata.walletpaymentsservice.kafka.events.wallet.WalletAdjustAppliedEvent;
-import com.nttdata.walletpaymentsservice.kafka.events.wallet.WalletAdjustFailedEvent;
-import com.nttdata.walletpaymentsservice.service.*;
+import com.nttdata.WalletPaymentsService.kafka.events.wallet.WalletAdjustAppliedEvent;
+import com.nttdata.WalletPaymentsService.kafka.events.wallet.WalletAdjustFailedEvent;
+import com.nttdata.WalletPaymentsService.service.OperationAwaiter;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import org.springframework.kafka.annotation.*;

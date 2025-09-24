@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.kafka.events.wallet;
+package com.nttdata.WalletPaymentsService.kafka.events.wallet;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
-package com.nttdata.walletpaymentsservice.service;
+package com.nttdata.WalletPaymentsService.service;
 
-import com.nttdata.walletpaymentsservice.domain.Payment;
+import com.nttdata.WalletPaymentsService.domain.Payment;
 import com.nttdata.walletpaymentsservice.model.PaymentRequest;
 import io.reactivex.Maybe;
 import io.reactivex.Single;

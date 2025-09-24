@@ -1,4 +1,4 @@
-package com.nttdata.walletpaymentsservice.domain;
+package com.nttdata.WalletPaymentsService.domain;
 
 
 import com.nttdata.walletpaymentsservice.model.*;
